@@ -3,6 +3,7 @@ from enum import Enum, EnumMeta
 from django.db import models
 
 from aristotle import settings
+from locations.models import Location
 
 
 class ViolationCategoryMeta(EnumMeta):
@@ -17,6 +18,9 @@ class ViolationCategory(Enum, metaclass=ViolationCategoryMeta):
 class Ticket(models.Model):
     violation = models.CharField(max_length=10, choices=ViolationCategory)
     plate_number = models.CharField(max_length=10)
-    location = models.CharField(max_length=256)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
+
+    def get_city(self):
+        return self.location.city
 
