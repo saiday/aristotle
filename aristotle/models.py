@@ -24,3 +24,5 @@ class Ticket(models.Model):
     def get_city(self):
         return self.location.city
 
+    def __str__(self):
+        return self.plate_number + ' (' + self.violation + ')'
