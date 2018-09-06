@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.conf.global_settings import LOGIN_REDIRECT_URL
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -29,6 +31,7 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = "users.CustomUser"
 
+LOGIN_REDIRECT_URL = "/admin/"
 
 # Application definition
 
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'users',
+    'api',
     'locations',
     'aristotle',
 ]
